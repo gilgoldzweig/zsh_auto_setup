@@ -1,0 +1,54 @@
+[alias]
+	l = "!git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+	# Displays a colorful and decorated graph of commit history with abbreviated commit hashes, relative dates, commit messages, authors, and branch names.
+
+	s = status
+	# Shortcut for "git status" - shows the working tree status.
+
+	p = !git push origin $(git rev-parse --abbrev-ref HEAD)
+	# Pushes the current branch to the remote repository specified as "origin".
+
+	c = commit -a
+	# Stages all changes and opens the default editor for creating a new commit.
+
+	cm = "!git c -m "
+	# Shortcut for "git commit -m" - stages all changes and opens the default editor for creating a new commit with a provided message.
+
+	ca = commit --amend
+	# Amends the previous commit by combining staged changes with the previous commit.
+
+	ch = checkout
+	# Shortcut for "git checkout" - switches branches or restores files.
+
+	cb = checkout -b
+	# Shortcut for "git checkout -b" - creates a new branch and switches to it.
+
+	wip = commit -anm "WIP"
+	# Stages and commits all tracked changes without running pre-commit hooks, creating a work-in-progress commit.
+
+	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+	# Stages and commits all changes with a commit message of 'WIPE SAVEPOINT', and then resets the repository to the previous commit, effectively discarding the last commit.
+
+	pls = pull origin staging
+	# Shortcut for "git pull origin staging" - fetches changes from the remote "origin" repository and merges them into the current branch "staging".
+
+	plm = pull origin master
+	# Shortcut for "git pull origin master" - fetches changes from the remote "origin" repository and merges them into the current branch "master".
+
+	plo = pull origin
+	# Shortcut for "git pull origin" - fetches changes from the remote "origin" repository and merges them into the current branch.
+
+	back = !sh -c 'git checkout @{-$0}'
+	# Switches to the branch that was checked out before the current branch, specified by the given index (e.g., "back 1" switches to the previous branch).
+
+	rb = !sh -c 'git branch -m $@'
+	# Renames the current branch with the provided name.
+
+	db = !sh -c 'branch -D $0'
+	# Deletes the specified branch.
+
+	j = !git jump
+	# Shortcut for a custom "git jump" command.
+
+	la = "!git config -l | grep alias | cut -c 7-"
+	# Lists all Git aliases configured in the gitconfig file.
